@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
+import db from '../config';
+import firebase from 'firebase';
 
 export default class Login extends React.Component{
 
@@ -11,9 +13,31 @@ export default class Login extends React.Component{
         }
     }
 
+    userlogin=(email, password)=>{
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(()=>{
+            return Alert.alert('Successful Login')
+        })
+        .catch(error=>{
+            return Alert.alert(error.message)
+        })
+    }
+
+    usersignup=(email, password)=>{
+        firebase.auth().createUserWithEmailAndPassword(email,password)
+        .then((response)=>{
+            return Alert.alert('User Added Successfully')
+        })
+        .catch(function(error){
+            return Alert.alert(error.message)
+        })
+    }
+
+   
+
     render(){
         return(
-            <View style={styles.container}>
+            <View >
 
                 <Text style={styles.headertext}>Barter</Text>
 
@@ -25,7 +49,7 @@ export default class Login extends React.Component{
                 keyboardType= 'email-address'
                 placeholder='E-mail'
                 onChangeText={(text)=>{
-                    this.state({
+                    this.setState({
                         email:text
                     })
                 }}/>
@@ -35,19 +59,26 @@ export default class Login extends React.Component{
                 secureTextEntry={true}
                 placeholder='Password'
                 onChangeText={(text)=>{
-                    this.state({
+                    this.setState({
                         password:text
                     })
                 }}/>
 
 
                 <TouchableOpacity 
-                style={styles.button}>
+                style={styles.button}
+                onPress={()=>{
+                    this.userlogin();
+                }}>
                     <Text>LOG-IN</Text>
                 </TouchableOpacity>
-
+     
                 <TouchableOpacity
-                style={styles.button}>
+                style={styles.button}
+                onPress={()=>{
+                    this.usersignup();
+                }}
+                >
                     <Text>SIGN UP</Text>
                 </TouchableOpacity>
 
