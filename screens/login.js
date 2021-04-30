@@ -68,7 +68,7 @@ export default class Login extends React.Component{
                 <TouchableOpacity 
                 style={styles.button}
                 onPress={()=>{
-                    this.userlogin();
+                    this.userlogin(this.state.email, this.state.password);
                 }}>
                     <Text>LOG-IN</Text>
                 </TouchableOpacity>
@@ -76,7 +76,7 @@ export default class Login extends React.Component{
                 <TouchableOpacity
                 style={styles.button}
                 onPress={()=>{
-                    this.usersignup();
+                    this.usersignup(this.state.email, this.state.password);
                 }}
                 >
                     <Text>SIGN UP</Text>
