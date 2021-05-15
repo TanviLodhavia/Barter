@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import Login from './screens/login'
+import { StyleSheet, Text, View } from 'react-native';
+import Login from './screens/loginscreen';
+import TabNavigator from './components/tabnavigator';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {AppDrawerNavigator} from './components/sidedrawer';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Login/>
-    </View>
+    <AppContainer/>
   );
 }
+
+const switchNavigator = createSwitchNavigator({
+  Login:{screen:Login},
+  Drawer:{screen:AppDrawerNavigator}
+})
+
+const AppContainer = createAppContainer(switchNavigator);
 
 const styles = StyleSheet.create({
   container: {
