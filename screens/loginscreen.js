@@ -23,7 +23,7 @@ export default class Login extends React.Component{
     userlogin=async(email, password)=>{
         firebase.auth().signInWithEmailAndPassword(email,password)
         .then(()=>{
-            return Alert.alert('Login Successful')
+            this.props.navigation.navigate('Drawer')
 
         })
         .catch(error=>{
@@ -58,7 +58,7 @@ export default class Login extends React.Component{
         })
 
         db.collection('Users').add({
-            FullName : this.state.firstname + this.state.lastname,
+            FullName : this.state.firstname + '' + this.state.lastname,
             Contact : this.state.contact,
             Address : this.state.address,
             Email : this.state.email,

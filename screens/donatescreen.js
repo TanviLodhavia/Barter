@@ -5,26 +5,26 @@ import firebase from 'firebase';
 import db from '../config';
 import MyHeader from '../components/header';
 
-export default class Donate extends React.Component{
+export default class Home extends React.Component{
     constructor(){
         super();
         this.state={
-            requestedBooksList:[]
+            requestedItemList:[]
         }
     }
 
-    getRequestedBooksList=()=>{ 
-        this.requestRef=db.collection("requested_books")
+    getRequestedItemList=()=>{ 
+        this.requestRef=db.collection("Items")
         .onSnapshot((snapshot)=>{ 
-            var requestedBooksList=snapshot.docs.map(document=>document.data()) 
+            var requestedItemList=snapshot.docs.map(document=>document.data()) 
             this.setState({ 
-                requestedBooksList:requestedBooksList 
+                requestedItemList:requestedItemList 
             }) 
         }) 
     }
 
     componentDidMount(){
-        this.getRequestedBooksList();
+        this.getRequestedItemList();
     }
 
     keyExtractor=(item,index)=>index.toString(); 
@@ -34,8 +34,8 @@ export default class Donate extends React.Component{
             <ListItem 
             key={i} bottomDivider> 
                 <ListItem.Content> 
-                    <ListItem.Title>{item.book_name}</ListItem.Title> 
-                    <ListItem.Subtitle>{item.reason}</ListItem.Subtitle> 
+                    <ListItem.Title>{item.item_name}</ListItem.Title> 
+                    <ListItem.Subtitle>{item.description}</ListItem.Subtitle> 
                     <TouchableOpacity style={styles.button} > 
                     <Text style={{color:"white"}}>View</Text> </TouchableOpacity> 
                 </ListItem.Content> 
@@ -48,13 +48,13 @@ export default class Donate extends React.Component{
             <View>
                 {/*<MyHeader title='Donate Book'/>*/}
                 <View>
-                    {this.state.requestedBooksList===0 ? (
+                    {this.state.requestedItemList===0 ? (
                         <View>
                             <Text>List of requested books</Text>
                         </View>
                     ):(
                         <FlatList 
-                        data={this.state.requestedBooksList}
+                        data={this.state.requestedItemList}
                         renderItem={this.renderItem}
                         keyExtractor={this.keyExtractor}/>
                     )}
@@ -77,4 +77,20 @@ const styles = StyleSheet.create({
         borderColor:'#ffab91', 
         borderRadius:10, 
         borderWidth:1, 
-        marginTop:20, padding:10, }, button:{ width:"75%", height:50, justifyContent:'center', alignItems:'center', borderRadius:10, backgroundColor:"#ff5722", shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.44, shadowRadius: 10.32, elevation: 16, marginTop:20 }, } )
+        marginTop:20, padding:10, 
+    }, 
+    button:{ 
+        width:"75%", 
+        height:50, 
+        justifyContent:'center', 
+        alignItems:'center', 
+        borderRadius:10, 
+        backgroundColor:"#0A184D", 
+        shadowColor: "#000", 
+        shadowOffset: { width: 0, height: 8, }, 
+        shadowOpacity: 0.44, 
+        shadowRadius: 10.32, 
+        elevation: 16, 
+        marginTop:20 
+    }, 
+})

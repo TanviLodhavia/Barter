@@ -4,24 +4,21 @@ import firebase from 'firebase';
 import db from '../config';
 import MyHeader from '../components/header';
 
-export default class Request extends React.Component{
+export default class Exchange extends React.Component{
     constructor(){
         super();
         this.state={
-            bookname:'',
-            author:'',
-            reason:'',
+            itemname:'',
+            description:'',
             userid:firebase.auth().currentUser.email
         }
     }
 
-    addRequest = () => {
-        db.collection('requested_books').add({
+    addItem = () => {
+        db.collection('Items').add({
             user_id:this.state.userid,
-            book_name:this.state.bookname,
-            author_name:this.state.author,
-            reason:this.state.reason,
-            request_id:Math.round().toString(36).substring(7)
+            item_name:this.state.itemname,
+            description:this.state.description,
         })
     }
 
@@ -33,21 +30,10 @@ export default class Request extends React.Component{
 
                     <TextInput
                     style={styles.formTextInput}
-                    placeholder='Book Name'
+                    placeholder='Item Name'
                     onChangeText={(text)=>{
                         this.setState({
-                            bookname:text
-                        })
-                    }} 
-                    />
-
-
-                    <TextInput
-                    style={styles.formTextInput}
-                    placeholder='Author'
-                    onChangeText={(text)=>{
-                        this.setState({
-                            author:text
+                            itemname:text
                         })
                     }}
                     />
@@ -56,18 +42,18 @@ export default class Request extends React.Component{
                     <TextInput
                     style={[styles.formTextInput, {height:300}]}
                     multiline = {true}
-                    placeholder='Reason To Request'
+                    placeholder='Description'
                     onChangeText={(text)=>{
                         this.setState({
-                            reason:text
+                            description:text
                         })
                     }}
                     />
 
                     <TouchableOpacity 
                     style={styles.button}
-                    onPress={()=>{this.addRequest()}}>
-                        <Text>Request</Text>
+                    onPress={()=>{this.addItem()}}>
+                        <Text style={{color:'#FFFFFF'}}>Request</Text>
                     </TouchableOpacity>
 
                 </KeyboardAvoidingView>
@@ -81,4 +67,29 @@ const styles = StyleSheet.create({
         flex:1, 
         alignItems:'center', 
         justifyContent:'center' 
-    }, formTextInput:{ width:"75%", height:35, alignSelf:'center', borderColor:'#ffab91', borderRadius:10, borderWidth:1, marginTop:20, padding:10, }, button:{ width:"75%", height:50, justifyContent:'center', alignItems:'center', borderRadius:10, backgroundColor:"#ff5722", shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.44, shadowRadius: 10.32, elevation: 16, marginTop:20 }, } )
+    }, 
+    formTextInput:{ 
+        width:"75%", 
+        height:35, 
+        alignSelf:'center', 
+        borderColor:'#3B5DA2', 
+        borderRadius:10, 
+        borderBottomWidth:1, 
+        marginTop:20, 
+        padding:10, 
+    }, 
+    button:{ 
+        width:"75%", 
+        height:50, 
+        justifyContent:'center', 
+        alignItems:'center', 
+        borderRadius:10, 
+        backgroundColor:"#0A184D", 
+        shadowColor: "#000", 
+        shadowOffset: { width: 0, height: 8, }, 
+        shadowOpacity: 0.44, 
+        shadowRadius: 10.32, 
+        elevation: 16, 
+        marginTop:20,
+    },
+ } )
