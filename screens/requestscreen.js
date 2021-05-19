@@ -91,5 +91,6 @@ const styles = StyleSheet.create({
         shadowRadius: 10.32, 
         elevation: 16, 
         marginTop:20,
+        alignSelf:'center'
     },
  } )

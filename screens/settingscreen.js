@@ -47,8 +47,9 @@ export default class Settings extends React.Component{
 
     render(){
         return(
-            <View>
+            <View style={styles.formContainer}>
                 <TextInput
+                style={styles.formTextInput}
                 value={this.state.fullname}
                 onChangeText={(text)=>{
                     this.setState({
@@ -57,6 +58,7 @@ export default class Settings extends React.Component{
                 }} />
 
                 <TextInput
+                style={styles.formTextInput}
                 value={this.state.contact}
                 onChangeText={(text)=>{
                     this.setState({
@@ -65,6 +67,7 @@ export default class Settings extends React.Component{
                 }} />
 
                 <TextInput
+                style={styles.formTextInput}
                 value={this.state.address}
                 onChangeText={(text)=>{
                     this.setState({
@@ -73,10 +76,11 @@ export default class Settings extends React.Component{
                 }} />
 
                 <TouchableOpacity
+                style={styles.button}
                 onPress={()=>{
                     this.updateUserDetails();
                 }}>
-                    <Text>Update</Text>
+                    <Text style={styles.buttonText}>Update</Text>
                 </TouchableOpacity>
 
             </View>
@@ -84,4 +88,44 @@ export default class Settings extends React.Component{
     }
 }
 
-const styles = StyleSheet.create({ container : { flex:1, alignItems: 'center', justifyContent: 'center' }, formContainer:{ flex:1, width:'100%', alignItems: 'center' }, formTextInput:{ width:"75%", height:35, alignSelf:'center', borderColor:'#ffab91', borderRadius:10, borderWidth:1, marginTop:20, padding:10, }, button:{ width:"75%", height:50, justifyContent:'center', alignItems:'center', borderRadius:10, backgroundColor:"#ff5722", shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.44, shadowRadius: 10.32, elevation: 16, marginTop:20 }, buttonText:{ fontSize:25, fontWeight:"bold", color:"#fff" } })
+const styles = StyleSheet.create({ 
+    container : { 
+        flex:1, 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+    }, 
+    formContainer:{ 
+        flex:1, 
+        width:'100%', 
+        alignItems: 'center' 
+    }, 
+    formTextInput:{ 
+        width:"75%", 
+        height:35, 
+        alignSelf:'center', 
+        borderColor:'#3B5DA2', 
+        borderRadius:10, 
+        borderBottomWidth:1, 
+        marginTop:20, 
+        padding:10,  
+    }, 
+    button:{ 
+        width:"75%", 
+        height:50, 
+        justifyContent:'center', 
+        alignItems:'center', 
+        borderRadius:10, 
+        backgroundColor:"#0A184D", 
+        shadowColor: "#000", 
+        shadowOffset: { width: 0, height: 8, }, 
+        shadowOpacity: 0.44, 
+        shadowRadius: 10.32, 
+        elevation: 16, 
+        marginTop:20, 
+    }, 
+    buttonText:{ 
+        fontSize:25, 
+        fontWeight:"bold", 
+        color:"#fff" 
+    } 
+})
