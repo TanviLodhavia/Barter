@@ -18,8 +18,8 @@ export default class Settings extends React.Component{
 
     getUserDetails=()=>{
         db.collection('Users').where('Email','==', this.state.emailID).get()
-        .then((response)=>{
-            response.forEach(doc=>{
+        .then(snapshot=>{
+            snapshot.forEach(doc=>{
                 var data=doc.data();
                 this.setState({
                     fullname:data.FullName,
@@ -33,9 +33,9 @@ export default class Settings extends React.Component{
 
     updateUserDetails=()=>{
         db.collection('Users').doc(this.state.docID).update({
-            FullName:this.state.fullname,
-            Contact:this.state.contact,
-            address:this.state.address
+            "FullName":this.state.fullname,
+            "Contact":this.state.contact,
+            "Address":this.state.address
         })
 
         Alert.alert('Profile Update Succesfully')

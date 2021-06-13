@@ -37,7 +37,7 @@ export default class Home extends React.Component{
                     <ListItem.Title>{item.item_name}</ListItem.Title> 
                     <ListItem.Subtitle>{item.description}</ListItem.Subtitle> 
                     <TouchableOpacity style={styles.button} > 
-                    <Text style={{color:"white"}}>View</Text> </TouchableOpacity> 
+                    <Text style={{color:"white"}}>Exchange</Text> </TouchableOpacity> 
                 </ListItem.Content> 
             </ListItem> 
         ) 
